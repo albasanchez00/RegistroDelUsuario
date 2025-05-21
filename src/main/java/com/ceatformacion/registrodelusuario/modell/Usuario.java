@@ -11,6 +11,7 @@ public class Usuario {
     private int idUsario=0;
     private LocalDate fechaRegistro;
 
+
     //Método Constructor
     public Usuario(){
         this.idUsario = id++;
