@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="es">
+<head th:insert="~{fragments/header.html :: head}">
     <meta charset="UTF-8">
     <title>CRUD</title>
 </head>
 <body>
-<h1>Listado de Usuario</h1>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<!-- Encabezado de una tabla -->
+<div class="container">
+    <h1>Listado de Usuario</h1>
+    <!-- Creamos un botón para volver al formulario de alta -->
+    <a th:href="@{/registro}" class="btn btn-primary">+ Nuevo</a>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <tr><th>ID</th>
+                    <th>Nombre</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Fecha Alta</th>
+                    <th>Acciones</th>
+                </tr>
+
+                <!-- Recorrido por esa lista que se envía desde controller llamado Usuarios-->
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.getIdUsuario()}"></td>
+                    <td th:text="${usuario.getNombreApellido()}"></td>
+                    <td th:text="${usuario.getUserName()}"></td>
+                    <td th:text="${usuario.getEmail()}"></td>
+                    <td th:text="${usuario.getFechaRegistro()}"></td>
+                    <td>
+                        <a th:href="@{'/editar/' + ${usuario.getIdUsuario()}}" class="btn btn-warning">✏️ Editar</a>
+                        <a th:href="@{'/eliminar/' + ${usuario.getIdUsuario()}}" class="btn btn-danger">❌ Eliminar</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
 </body>
 </html>
